@@ -1,18 +1,18 @@
-/* ==========================================
-   FAQ
-========================================== */
+// ==============================
+// FAQ
+// ==============================
 
 const faqItems = document.querySelectorAll(".faq-item");
 
 faqItems.forEach(item => {
 
-    const button = item.querySelector(".faq-question");
+    const question = item.querySelector(".faq-question");
 
-    button.addEventListener("click", () => {
+    question.addEventListener("click", () => {
 
         faqItems.forEach(faq => {
 
-            if(faq !== item){
+            if (faq !== item) {
                 faq.classList.remove("active");
             }
 
@@ -24,17 +24,18 @@ faqItems.forEach(item => {
 
 });
 
-/* ==========================================
-   SCROLL REVEAL
-========================================== */
+// ==============================
+// Animação ao aparecer na tela
+// ==============================
 
-const observer = new IntersectionObserver((entries)=>{
+const observer = new IntersectionObserver((entries) => {
 
-    entries.forEach(entry=>{
+    entries.forEach(entry => {
 
-        if(entry.isIntersecting){
+        if (entry.isIntersecting) {
 
-            entry.target.classList.add("show");
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
 
         }
 
@@ -45,143 +46,72 @@ const observer = new IntersectionObserver((entries)=>{
 });
 
 document.querySelectorAll(
-".card,.benefit,.learn-card,.bonus-card,.faq-item,.cta,.final-cta"
+".problem-card, .solution-item, .learn-item, .before, .after, .offer-box, .faq-item"
 ).forEach(el=>{
 
-    el.classList.add("hidden");
+    el.style.opacity="0";
+    el.style.transform="translateY(40px)";
+    el.style.transition="all .6s ease";
 
     observer.observe(el);
 
 });
 
-/* ==========================================
-   BOTÕES
-========================================== */
+// ==============================
+// Efeito nos botões
+// ==============================
 
-document.querySelectorAll(".btn").forEach(btn=>{
+const buttons = document.querySelectorAll(".btn-buy");
 
-    btn.addEventListener("mouseenter",()=>{
+buttons.forEach(button=>{
 
-        btn.style.transform="translateY(-4px) scale(1.03)";
+button.addEventListener("mouseenter",()=>{
 
-    });
-
-    btn.addEventListener("mouseleave",()=>{
-
-        btn.style.transform="";
-
-    });
+button.style.transform="translateY(-4px) scale(1.03)";
 
 });
 
-/* ==========================================
-   CONTADOR REGRESSIVO
-========================================== */
+button.addEventListener("mouseleave",()=>{
 
-const countdown = document.createElement("div");
+button.style.transform="translateY(0) scale(1)";
 
-countdown.className="countdown";
+});
 
-countdown.innerHTML=`
+});
 
-⏰ Oferta promocional termina em
+// ==============================
+// Voltar ao topo
+// ==============================
 
-<div id="timer">
+const topButton=document.createElement("button");
 
-<span>02</span> :
+topButton.innerHTML="↑";
 
-<span>00</span> :
+topButton.className="top-button";
 
-<span>00</span>
+document.body.appendChild(topButton);
 
-</div>
+topButton.addEventListener("click",()=>{
 
-`;
+window.scrollTo({
 
-const hero=document.querySelector(".hero .container");
+top:0,
+behavior:"smooth"
 
-hero.appendChild(countdown);
+});
 
-let totalSeconds=7200;
-
-const timer=document.getElementById("timer");
-
-setInterval(()=>{
-
-if(totalSeconds<=0)return;
-
-totalSeconds--;
-
-const h=Math.floor(totalSeconds/3600);
-
-const m=Math.floor((totalSeconds%3600)/60);
-
-const s=totalSeconds%60;
-
-timer.innerHTML=`
-
-<span>${String(h).padStart(2,"0")}</span> :
-
-<span>${String(m).padStart(2,"0")}</span> :
-
-<span>${String(s).padStart(2,"0")}</span>
-
-`;
-
-},1000);
-
-/* ==========================================
-   CONTADOR DE VISUALIZAÇÕES
-========================================== */
-
-const visitors=document.createElement("div");
-
-visitors.className="visitors";
-
-const amount=Math.floor(Math.random()*23)+112;
-
-visitors.innerHTML=`🔥 ${amount} pessoas estão visualizando esta página agora`;
-
-document.querySelector(".hero .container").appendChild(visitors);
-
-/* ==========================================
-   BARRA DE PROGRESSO
-========================================== */
-
-const progress=document.createElement("div");
-
-progress.style.position="fixed";
-
-progress.style.top="0";
-
-progress.style.left="0";
-
-progress.style.height="4px";
-
-progress.style.width="0%";
-
-progress.style.background="#29c8ff";
-
-progress.style.zIndex="99999";
-
-document.body.appendChild(progress);
+});
 
 window.addEventListener("scroll",()=>{
 
-const scroll=window.scrollY;
+if(window.scrollY>500){
 
-const height=document.documentElement.scrollHeight-window.innerHeight;
+topButton.classList.add("show");
 
-progress.style.width=(scroll/height)*100+"%";
+}else{
 
-});
+topButton.classList.remove("show");
 
-/* ==========================================
-   EFEITO SUAVE
-========================================== */
-
-window.addEventListener("load",()=>{
-
-document.body.classList.add("loaded");
+}
 
 });
