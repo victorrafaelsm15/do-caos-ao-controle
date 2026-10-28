@@ -448,7 +448,7 @@ footer nav a{text-decoration:underline;text-underline-offset:3px}
 const CHECKOUT_URL = "https://pay.kiwify.com.br/UzFYrza";
 document.querySelectorAll(".js-buy").forEach(a=>{
   if(CHECKOUT_URL){a.href=CHECKOUT_URL;}
-  a.addEventListener("click",()=>{ try{ if(window.fbq) fbq("track","InitiateCheckout",{value:12.90,currency:"BRL"}); }catch(e){} });
+  /* O evento InitiateCheckout é registrado pela Kiwify ao abrir o checkout (evita contagem duplicada). */
 });
 /* rastreador: dias marcados como exemplo de progresso */
 document.querySelectorAll(".days").forEach((d,w)=>{
