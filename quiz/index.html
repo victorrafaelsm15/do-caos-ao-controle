@@ -180,10 +180,11 @@ body{background:var(--ink);color:var(--text);font-family:var(--f-body);-webkit-f
     <div class="prog"><i></i><i></i><i></i><i></i><i></i></div>
     <h2 class="q-t">Qual dessas frases mais parece com você?</h2>
     <div class="opts" data-q="1">
-      <button class="opt" data-v="inconstante">Começo tudo empolgado e abandono em poucos dias</button>
-      <button class="opt" data-v="adia">Deixo o importante para depois e me culpo</button>
-      <button class="opt" data-v="sobrecarregada">Vivo ocupado, mas sinto que não saio do lugar</button>
-      <button class="opt" data-v="ansiosa">A ansiedade me trava antes mesmo de começar</button>
+      <button class="opt" data-v="perfeccionista">Só começo quando sei que vai sair perfeito</button>
+      <button class="opt" data-v="sobrecarregado">Tenho tanta coisa que não sei por onde começar</button>
+      <button class="opt" data-v="ansioso">O medo de errar me trava antes de tentar</button>
+      <button class="opt" data-v="rebelde">Quando alguém me cobra, aí é que eu não faço</button>
+      <button class="opt" data-v="distraido">Começo empolgado, mas me distraio e largo</button>
     </div>
   </section>
 
@@ -256,7 +257,7 @@ body{background:var(--ink);color:var(--text);font-family:var(--f-body);-webkit-f
 
     <p class="vid-h">Assista agora: <b>como sair do caos para o controle</b>, começando hoje.</p>
     <div class="video" id="vbox">
-      <video id="vsl" src="/quiz/video.mp4" poster="/img/video-capa.jpg" playsinline preload="metadata"></video>
+      <video id="vsl" src="/quiz/video.mp4?v=2" poster="/img/video-capa.jpg?v=2" playsinline preload="metadata"></video>
       <button class="play" id="vplay" aria-label="Assistir ao vídeo"><i></i></button>
       <div class="vbar" id="vbar"></div>
     </div>
@@ -298,10 +299,11 @@ const CONFIG = {
 /* ===================================== */
 
 const PROFILES = {
-  inconstante:{t:'Mente Inconstante',p:'Você tem energia para começar — o que falta é um <b>sistema que sustente</b> o hábito depois da empolgação. O problema não é força de vontade: é método.',c:['Cap. 4 · Neurociência dos hábitos','Cap. 5 · Hábitos que duram','Cap. 8 · Recaídas sem culpa']},
-  adia:{t:'Mente que Adia',p:'Você sabe o que precisa fazer, mas <b>o cérebro empurra para depois</b> o que gera desconforto — e a culpa vem em seguida. Isso tem explicação e tem saída.',c:['Cap. 2 · A mente que adia','Regra dos 2 minutos','Ficha de diagnóstico']},
-  sobrecarregada:{t:'Mente Sobrecarregada',p:'Você está sempre ocupado, mas <b>a energia vai para o urgente</b> e o importante fica para trás. O que falta é clareza de prioridade e foco.',c:['Cap. 1 · O caos interior','Cap. 6 · Foco e tempo','Cap. 7 · Rotinas com intenção']},
-  ansiosa:{t:'Mente Ansiosa',p:'A ansiedade chega <b>antes mesmo de você começar</b> e transforma tarefas simples em montanhas. Dá para usar ferramentas práticas para baixar esse volume.',c:['Cap. 3 · Ansiedade aliada','Respiração 4-7-8','Grounding 5-4-3-2-1']}
+  perfeccionista:{t:'O Perfeccionista',p:'Você só começa quando as condições parecem <b>perfeitas</b> — e como elas nunca ficam, o importante vai ficando para depois. O medo de entregar algo imperfeito trava o primeiro passo.',c:['Regra dos 2 minutos','Mentalidade de crescimento','Plano de 30 dias']},
+  sobrecarregado:{t:'O Sobrecarregado',p:'Você tem <b>tantas tarefas</b> que não sabe por onde começar — e acaba não começando nenhuma. O que falta não é esforço: é clareza de prioridade.',c:['Matriz de Eisenhower','Regra dos 3','Time Blocking']},
+  ansioso:{t:'O Ansioso',p:'O medo de falhar chega <b>antes de você tentar</b>: "se eu não tentar, não posso fracassar". Começar pequeno tira o peso da primeira ação.',c:['Regra dos 2 minutos','Capítulo da recaída','Atenção plena em 4 semanas']},
+  rebelde:{t:'O Rebelde',p:'Quando a tarefa parece <b>imposta</b>, alguma coisa em você resiste — e a cobrança só piora. A virada é transformar o "tenho que" em algo que você escolhe.',c:['Autonomia na tarefa','Micro-recompensas','Plano de 30 dias']},
+  distraido:{t:'O Distraído',p:'Você começa com entusiasmo, mas <b>perde o foco</b> para o celular e para tudo ao redor. O problema não é vontade: é um ambiente que puxa sua atenção o tempo todo.',c:['Técnica Pomodoro','Ambiente sem distrações','Rastreadores de hábitos']}
 };
 const TIME_TXT={semanas:'Como começou há pouco tempo, é o melhor momento para agir.',meses:'Depois de alguns meses, isso já virou rotina — e rotina se muda com método.',ano:'Mais de um ano repetindo o mesmo ciclo mostra que não é falta de vontade: é falta de sistema.',sempre:'Quando é assim há muito tempo, o caminho é dar um passo pequeno de cada vez.'};
 
@@ -332,7 +334,7 @@ function analyse(){show('s-ana',true);const li=document.querySelectorAll('#s-ana
   li.forEach((l,i)=>setTimeout(()=>l.classList.add('ok'),700+i*800));
   setTimeout(result,3300);}
 function result(){
-  const p=PROFILES[answers.q1]||PROFILES.adia;
+  const p=PROFILES[answers.q1]||PROFILES.sobrecarregado;
   $('#r-title').textContent=p.t;
   $('#r-text').innerHTML=p.p+' '+(TIME_TXT[answers.q3]||'');
   $('#r-chips').innerHTML=p.c.map(x=>'<span>'+x+'</span>').join('');
