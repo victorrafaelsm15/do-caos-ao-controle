@@ -165,8 +165,6 @@ body{background:var(--ink);color:var(--text);font-family:var(--f-body);-webkit-f
 .offer .new{font-family:var(--f-display);font-size:46px;color:var(--glow);display:block;text-align:center;margin:2px 0 16px;text-shadow:0 0 24px rgba(70,200,255,.45)}
 .cta.alt{background:linear-gradient(180deg,#ffe27a,#ffc83d);box-shadow:0 0 0 1px rgba(255,255,255,.3) inset,0 14px 40px rgba(255,200,61,.35)}
 
-footer{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:30px 22px 40px;color:#6f80aa;font-size:12.5px;line-height:1.6;text-align:center;border-top:1px solid var(--line)}
-footer a{color:#8fa2cf}
 </style>
 </head>
 <body>
@@ -285,13 +283,6 @@ footer a{color:#8fa2cf}
   </section>
 </main>
 
-<footer>
-  <div><b>Mente Sem Travas</b></div>
-  <div id="f-seller"></div>
-  <div>Suporte: mentesemtravastiktok@gmail.com · Pagamento processado com segurança pela Kiwify.</div>
-  <div>Este material tem caráter educativo e de desenvolvimento pessoal e não substitui o acompanhamento de profissionais de saúde.</div>
-  <div><a href="/termos.html">Termos de uso</a> · <a href="/privacidade.html">Política de privacidade</a> · © 2026 Mente Sem Travas</div>
-</footer>
 
 <script>
 /* ===== CONFIGURAÇÃO — edite aqui ===== */
@@ -303,7 +294,6 @@ const CONFIG = {
   priceOld:    'De R$ 22,80',
   pricePromo:  'R$ 16,90',
   showOfferAt: 0.87,          // mostra a oferta final quando o vídeo chega a 87% (fala da oferta)
-  seller:      'Vendedor: Lidiane Soares'               // ajuste igual ao rodapé da página de vendas
 };
 /* ===================================== */
 
@@ -354,7 +344,6 @@ function result(){
 // links e preços
 $('#cta-main').href=CONFIG.checkoutURL;$('#cta-promo').href=CONFIG.promoURL;
 $('#p-main').textContent=CONFIG.priceMain;$('#p-old').textContent=CONFIG.priceOld;$('#p-promo').textContent=CONFIG.pricePromo;
-$('#f-seller').textContent=CONFIG.seller;
 $('#cta-more').href=CONFIG.infoURL;$('#cta-more').onclick=()=>track('ClickSaibaMais');
 $('#cta-main').onclick=()=>track('ClickCheckout',{button:'principal'});
 $('#cta-promo').onclick=()=>track('ClickCheckout',{button:'promo'});
