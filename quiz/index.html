@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Descubra seu perfil — Mente Sem Travas</title>
+<meta name="description" content="Responda 4 perguntas rápidas e descubra o que está travando sua rotina.">
+<meta name="theme-color" content="#050a1c">
+<link rel="icon" href="/img/pg1.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1343668074403139');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1343668074403139&ev=PageView&noscript=1" alt=""></noscript>
+
+<style>
+:root{
+  --ink:#050a1c;--ink-2:#0a1430;--panel:#0d1a3c;--line:#1f2f5c;
+  --text:#eef2ff;--muted:#9fb0d9;--volt:#2f6bff;--glow:#46c8ff;--cta-ink:#04112b;
+  --f-display:'Anton',Impact,sans-serif;--f-body:'Figtree',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--ink);color:var(--text);font-family:var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* fundo em grade, igual ao estilo de referência, nas cores da marca */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(60% 40% at 50% 0%,rgba(47,107,255,.28),transparent 70%),
+    linear-gradient(rgba(70,200,255,.07) 1px,transparent 1px) 0 0/48px 48px,
+    linear-gradient(90deg,rgba(70,200,255,.07) 1px,transparent 1px) 0 0/48px 48px;
+  animation:drift 30s linear infinite}
+@keyframes drift{to{background-position:0 0,0 48px,48px 0}}
+.app{position:relative;z-index:1;max-width:520px;margin:0 auto;min-height:100%;padding:28px 22px 40px;display:flex;flex-direction:column}
+.screen{display:none;flex-direction:column;flex:1}
+.screen.on{display:flex;animation:enter .5s cubic-bezier(.2,.8,.2,1) both}
+@keyframes enter{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+/* intro */
+.brand{font-family:var(--f-display);letter-spacing:.08em;font-size:15px;color:var(--glow);text-align:center;opacity:.9}
+.hero-t{font-family:var(--f-display);font-weight:400;font-size:clamp(38px,11vw,54px);line-height:1.02;text-align:center;margin:22px 0 8px;text-transform:uppercase}
+.hero-t em{font-style:normal;color:var(--glow);text-shadow:0 0 24px rgba(70,200,255,.45)}
+.books{position:relative;height:280px;margin:18px auto 6px;width:100%;max-width:360px}
+.books img{position:absolute;top:0;width:175px;border-radius:8px;box-shadow:0 20px 50px rgba(0,0,0,.55);border:1px solid var(--line)}
+.books .b1{left:50%;transform:translateX(-50%) rotate(0);z-index:3;animation:float 5s ease-in-out infinite}
+.books .b2{left:4%;top:28px;transform:rotate(-9deg);opacity:.55;filter:saturate(.6)}
+.books .b3{right:4%;top:28px;transform:rotate(9deg);opacity:.55;filter:saturate(.6)}
+@keyframes float{50%{transform:translateX(-50%) translateY(-8px)}}
+.lead{color:var(--muted);text-align:center;font-size:19px;line-height:1.45;margin:14px 6px 26px}
+.lead b{color:var(--text)}
+.cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:0;cursor:pointer;
+  background:linear-gradient(180deg,#7fdcff,var(--glow));color:var(--cta-ink);font-family:var(--f-body);font-weight:800;font-size:20px;
+  padding:21px 20px;border-radius:18px;text-decoration:none;box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 14px 40px rgba(70,200,255,.35);
+  transition:transform .15s}
+.cta:active{transform:scale(.97)}
+.cta.pulse{animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 14px 60px rgba(70,200,255,.65)}}
+.mini{color:var(--muted);font-size:14px;text-align:center;margin-top:14px}
+
+
+/* intro: gancho + 1ª pergunta na mesma tela */
+#s-1 .hero-t.hk{font-size:clamp(30px,8.8vw,40px);margin:14px 0 4px}
+.sub{text-align:center;color:var(--muted);font-size:16px}
+.arrow{display:flex;justify-content:center;color:var(--glow);margin:14px 0 8px;animation:bob 1.4s ease-in-out infinite;filter:drop-shadow(0 0 10px rgba(70,200,255,.6))}
+@keyframes bob{50%{transform:translateY(9px)}}
+#s-1 .prog{margin:6px 0 22px}
+#s-1 .q-t{font-size:clamp(24px,6.6vw,30px);margin-bottom:18px}
+.screen.out{display:flex;animation:leave .32s ease both}
+@keyframes leave{to{opacity:0;transform:translateX(-40px)}}
+.screen.on.fwd{animation:enterR .45s cubic-bezier(.2,.8,.2,1) both}
+@keyframes enterR{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+
+.more{display:block;width:100%;margin-top:18px;padding:16px 18px;border:1px solid var(--line);border-radius:16px;text-align:center;color:var(--muted);font-family:var(--f-body);font-size:16px;font-weight:600;text-decoration:none;background:transparent}
+.more:hover{color:var(--text);border-color:var(--glow)}
+/* progresso */
+.prog{display:flex;gap:8px;margin:6px 0 34px}
+.prog i{flex:1;height:5px;border-radius:3px;background:var(--line);overflow:hidden;position:relative}
+.prog i::after{content:"";position:absolute;inset:0;background:var(--glow);transform:scaleX(0);transform-origin:left;transition:transform .5s ease}
+.prog i.done::after{transform:scaleX(1)}
+
+/* perguntas */
+.q-t{font-size:clamp(28px,7.6vw,36px);font-weight:800;line-height:1.15;margin-bottom:24px}
+.opts{display:flex;flex-direction:column;gap:13px}
+.opt{text-align:left;width:100%;background:rgba(13,26,60,.85);border:1px solid var(--line);color:var(--text);
+  font-family:var(--f-body);font-size:19px;font-weight:600;padding:22px 22px;border-radius:18px;cursor:pointer;
+  opacity:0;transform:translateY(14px);animation:optin .45s ease forwards;transition:border-color .2s,background .2s,transform .15s}
+.opt:nth-child(1){animation-delay:.08s}.opt:nth-child(2){animation-delay:.16s}.opt:nth-child(3){animation-delay:.24s}.opt:nth-child(4){animation-delay:.32s}
+@keyframes optin{to{opacity:1;transform:none}}
+.opt:hover{border-color:var(--volt)}
+.opt.sel{border-color:var(--glow);background:rgba(70,200,255,.14);transform:scale(.98)}
+.back{background:none;border:0;color:var(--muted);font-family:var(--f-body);font-size:17px;margin-top:26px;cursor:pointer;align-self:flex-start}
+
+/* ilustrações das perguntas */
+.ill{margin-top:26px;background:rgba(13,26,60,.7);border:1px solid var(--line);border-radius:22px;padding:22px 18px;text-align:center}
+.ill small{display:block;color:var(--muted);font-size:15px;margin-top:14px}
+.notes{display:flex;flex-direction:column;gap:10px;text-align:left}
+.note{display:flex;align-items:center;gap:12px;background:var(--ink-2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;
+  opacity:0;transform:translateX(-20px);animation:slide .5s ease forwards}
+.note:nth-child(2){animation-delay:.9s}.note:nth-child(3){animation-delay:1.8s}
+@keyframes slide{to{opacity:1;transform:none}}
+.note .dot{width:38px;height:38px;border-radius:10px;background:#1b2a57;display:flex;align-items:center;justify-content:center;font-size:20px;flex:none}
+.note b{display:block;font-size:15px}.note span{font-size:14px;color:var(--muted)}
+.note .t{margin-left:auto;font-size:13px;color:var(--muted)}
+.day{display:flex;justify-content:space-between;gap:8px}
+.day div{flex:1;padding:14px 4px;border-radius:14px;background:var(--ink-2);border:1px solid var(--line);font-size:26px;animation:lit 4s infinite}
+.day div:nth-child(2){animation-delay:1s}.day div:nth-child(3){animation-delay:2s}.day div:nth-child(4){animation-delay:3s}
+.day div span{display:block;font-size:12px;color:var(--muted);margin-top:6px}
+@keyframes lit{0%,20%{border-color:var(--glow);box-shadow:0 0 18px rgba(70,200,255,.35)}30%,100%{border-color:var(--line);box-shadow:none}}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;max-width:300px;margin:0 auto}
+.cal i{aspect-ratio:1;border-radius:6px;background:var(--ink-2);border:1px solid var(--line);animation:fill .3s ease forwards}
+.cal i.x{animation:mark 6s infinite}
+@keyframes mark{0%,10%{background:var(--ink-2)}20%,100%{background:#25386e}}
+.flow{display:flex;align-items:center;justify-content:space-between}
+.flow .st{display:flex;flex-direction:column;align-items:center;gap:8px;width:30%}
+.flow .c{width:68px;height:68px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:28px;background:var(--ink-2)}
+.flow .st.hl .c{border-color:var(--glow);box-shadow:0 0 22px rgba(70,200,255,.4);animation:beat 1.8s ease-in-out infinite}
+@keyframes beat{50%{transform:scale(1.07)}}
+.flow b{font-size:15px}.flow .st.hl b{color:var(--glow)}
+.flow span{font-size:13px;color:var(--muted)}
+.flow .dash{flex:1;height:2px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 12px);margin-bottom:46px}
+
+/* análise */
+.ana{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:26px}
+.ring{width:130px;height:130px;border-radius:50%;border:6px solid var(--line);border-top-color:var(--glow);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ana h2{font-size:26px;font-weight:800}
+.steps{list-style:none;display:flex;flex-direction:column;gap:10px;color:var(--muted);font-size:16px}
+.steps li{opacity:.35;transition:opacity .4s,color .4s}.steps li.ok{opacity:1;color:var(--text)}
+.steps li.ok::before{content:"✓ ";color:var(--glow);font-weight:800}
+
+/* resultado */
+.tag{align-self:center;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--glow);border:1px solid rgba(70,200,255,.4);padding:7px 14px;border-radius:30px}
+.res-t{font-family:var(--f-display);font-weight:400;text-transform:uppercase;font-size:clamp(40px,12vw,58px);line-height:1;text-align:center;margin:16px 0 14px;text-shadow:0 0 30px rgba(70,200,255,.35)}
+.res-p{color:var(--muted);font-size:18px;line-height:1.5;text-align:center;margin-bottom:22px}
+.res-p b{color:var(--text)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:26px}
+.chips span{font-size:14px;background:var(--ink-2);border:1px solid var(--line);border-radius:20px;padding:7px 12px}
+.vid-h{text-align:center;font-size:21px;line-height:1.4;color:var(--muted);margin:4px 0 16px}
+.vid-h b{color:var(--text)}
+.video{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:#000;aspect-ratio:9/16;max-height:72vh;margin:0 auto 18px;width:100%}
+.video video{width:100%;height:100%;object-fit:contain;display:block}
+.video .vbar{position:absolute;left:0;bottom:0;height:5px;background:var(--glow);width:0;transition:width .25s linear}
+.video .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(5,10,28,.35);border:0;cursor:pointer}
+.video .play i{width:84px;height:84px;border-radius:50%;background:var(--glow);display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(70,200,255,.6)}
+.video .play i::after{content:"";border-left:26px solid var(--cta-ink);border-top:16px solid transparent;border-bottom:16px solid transparent;margin-left:6px}
+.video .sound{position:absolute;top:12px;left:12px;background:rgba(5,10,28,.75);border:1px solid var(--line);color:var(--text);font-family:var(--f-body);font-size:14px;padding:8px 12px;border-radius:20px;cursor:pointer}
+.price-line{text-align:center;color:var(--muted);font-size:15px;margin-top:10px}
+.price-line b{color:var(--text)}
+
+/* oferta do fim do vídeo */
+.offer{display:none;margin-top:24px;border-radius:22px;padding:24px 20px;border:1px solid rgba(70,200,255,.55);
+  background:linear-gradient(180deg,rgba(47,107,255,.22),rgba(13,26,60,.9));box-shadow:0 0 50px rgba(47,107,255,.25)}
+.offer.on{display:block;animation:enter .6s cubic-bezier(.2,.8,.2,1) both}
+.offer .k{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--glow);text-align:center}
+.offer h3{font-size:25px;font-weight:800;text-align:center;margin:10px 0 8px;line-height:1.2}
+.offer p{color:var(--muted);text-align:center;font-size:16px;line-height:1.45;margin-bottom:16px}
+.offer ul{list-style:none;margin:0 0 18px;display:flex;flex-direction:column;gap:8px}
+.offer li{font-size:16px;padding-left:28px;position:relative}
+.offer li::before{content:"✓";position:absolute;left:4px;color:var(--glow);font-weight:800}
+.offer .old{text-decoration:line-through;color:var(--muted);font-size:16px}
+.offer .new{font-family:var(--f-display);font-size:46px;color:var(--glow);display:block;text-align:center;margin:2px 0 16px;text-shadow:0 0 24px rgba(70,200,255,.45)}
+.cta.alt{background:linear-gradient(180deg,#ffe27a,#ffc83d);box-shadow:0 0 0 1px rgba(255,255,255,.3) inset,0 14px 40px rgba(255,200,61,.35)}
+
+footer{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:30px 22px 40px;color:#6f80aa;font-size:12.5px;line-height:1.6;text-align:center;border-top:1px solid var(--line)}
+footer a{color:#8fa2cf}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<main class="app">
+
+  <!-- 0. INTRO -->
+  <section class="screen on" id="s-1">
+    <div class="brand">MENTE SEM TRAVAS</div>
+    <h1 class="hero-t hk">Descubra o que<br><em>te trava</em></h1>
+    <p class="sub">4 perguntas · menos de 1 minuto</p>
+    <div class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M12 4v15m0 0-6-6m6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="prog"><i></i><i></i><i></i><i></i><i></i></div>
+    <h2 class="q-t">Qual dessas frases mais parece com você?</h2>
+    <div class="opts" data-q="1">
+      <button class="opt" data-v="inconstante">Começo tudo empolgado e abandono em poucos dias</button>
+      <button class="opt" data-v="adia">Deixo o importante para depois e me culpo</button>
+      <button class="opt" data-v="sobrecarregada">Vivo ocupado, mas sinto que não saio do lugar</button>
+      <button class="opt" data-v="ansiosa">A ansiedade me trava antes mesmo de começar</button>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="screen" id="s-2">
+    <div class="prog"><i></i><i></i><i></i><i></i><i></i></div>
+    <h2 class="q-t">Em que momento isso mais acontece?</h2>
+    <div class="opts" data-q="2">
+      <button class="opt" data-v="manha">De manhã, para sair da cama e começar o dia</button>
+      <button class="opt" data-v="trabalho">No trabalho ou nos estudos</button>
+      <button class="opt" data-v="projetos">Nos projetos pessoais que vivo adiando</button>
+      <button class="opt" data-v="noite">À noite, com a cabeça que não desliga</button>
+    </div>
+    <div class="ill"><div class="day">
+      <div>🌅<span>Manhã</span></div><div>💼<span>Trabalho</span></div><div>🎯<span>Projetos</span></div><div>🌙<span>Noite</span></div>
+    </div><small>O travamento tem hora para aparecer</small></div>
+    <button class="back" data-back>Voltar</button>
+  </section>
+
+  <!-- 3 -->
+  <section class="screen" id="s-3">
+    <div class="prog"><i></i><i></i><i></i><i></i><i></i></div>
+    <h2 class="q-t">Há quanto tempo você se sente assim?</h2>
+    <div class="opts" data-q="3">
+      <button class="opt" data-v="semanas">Algumas semanas</button>
+      <button class="opt" data-v="meses">Alguns meses</button>
+      <button class="opt" data-v="ano">Mais de um ano</button>
+      <button class="opt" data-v="sempre">Desde que me lembro</button>
+    </div>
+    <div class="ill"><div class="cal" id="cal"></div><small>Cada dia adiado vira um padrão</small></div>
+    <button class="back" data-back>Voltar</button>
+  </section>
+
+  <!-- 4 -->
+  <section class="screen" id="s-4">
+    <div class="prog"><i></i><i></i><i></i><i></i><i></i></div>
+    <h2 class="q-t">Se você tivesse controle da sua rotina, o que mudaria primeiro?</h2>
+    <div class="opts" data-q="4">
+      <button class="opt" data-v="terminar">Terminar o que eu começo</button>
+      <button class="opt" data-v="paz">Acordar e dormir em paz</button>
+      <button class="opt" data-v="tempo">Ter tempo para mim</button>
+      <button class="opt" data-v="culpa">Parar de me sentir culpado</button>
+    </div>
+    <div class="ill"><div class="flow">
+      <div class="st"><div class="c">🌀</div><b>Caos</b><span>hoje</span></div>
+      <div class="dash"></div>
+      <div class="st hl"><div class="c">📘</div><b>Método</b><span>passo a passo</span></div>
+      <div class="dash"></div>
+      <div class="st"><div class="c">🎯</div><b>Controle</b><span>em 30 dias</span></div>
+    </div></div>
+    <button class="back" data-back>Voltar</button>
+  </section>
+
+  <!-- 5. ANÁLISE -->
+  <section class="screen" id="s-ana">
+    <div class="prog"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="ana">
+      <div class="ring"></div>
+      <h2>Analisando suas respostas…</h2>
+      <ul class="steps"><li>Identificando seu padrão de travamento</li><li>Cruzando com os 5 tipos de procrastinador</li><li>Montando seu ponto de partida</li></ul>
+    </div>
+  </section>
+
+  <!-- 6. RESULTADO + VÍDEO -->
+  <section class="screen" id="s-res">
+    <span class="tag">Seu perfil</span>
+    <h2 class="res-t" id="r-title">—</h2>
+    <p class="res-p" id="r-text"></p>
+    <div class="chips" id="r-chips"></div>
+
+    <p class="vid-h">Assista agora: <b>como sair do caos para o controle</b>, começando hoje.</p>
+    <div class="video" id="vbox">
+      <video id="vsl" src="/quiz/video.mp4" poster="/img/video-capa.jpg" playsinline preload="metadata"></video>
+      <button class="play" id="vplay" aria-label="Assistir ao vídeo"><i></i></button>
+      <div class="vbar" id="vbar"></div>
+    </div>
+
+    <!-- Botão 1: aparece desde o início do vídeo -->
+    <a class="cta" id="cta-main" href="#" target="_blank" rel="noopener">Quero o e-book agora →</a>
+    <p class="price-line">Acesso imediato por <b id="p-main"></b> · Pagamento seguro pela Kiwify</p>
+
+    <!-- Botão 2: aparece ao final do vídeo -->
+    <div class="offer" id="offer">
+      <div class="k">Condição especial para quem assistiu até o fim</div>
+      <h3>E-book + Kit de Fichas Editáveis</h3>
+      <p>Leve o método completo e as fichas prontas para aplicar o plano de 30 dias.</p>
+      <ul>
+        <li>E-book <b>Do Caos ao Controle</b> — 10 capítulos</li>
+        <li>Plano de 30 dias e rastreadores</li>
+        <li><b>Kit de Fichas Editáveis</b> — para preencher no computador ou celular</li>
+      </ul>
+      <div style="text-align:center"><span class="old" id="p-old"></span></div>
+      <span class="new" id="p-promo"></span>
+      <a class="cta alt" id="cta-promo" href="#" target="_blank" rel="noopener">Quero a oferta especial →</a>
+    </div>
+      <a class="more" id="cta-more" href="#" target="_blank" rel="noopener">Quero saber mais antes de comprar →</a>
+  </section>
+</main>
+
+<footer>
+  <div><b>Mente Sem Travas</b></div>
+  <div id="f-seller"></div>
+  <div>Suporte: mentesemtravastiktok@gmail.com · Pagamento processado com segurança pela Kiwify.</div>
+  <div>Este material tem caráter educativo e de desenvolvimento pessoal e não substitui o acompanhamento de profissionais de saúde.</div>
+  <div><a href="/termos.html">Termos de uso</a> · <a href="/privacidade.html">Política de privacidade</a> · © 2026 Mente Sem Travas</div>
+</footer>
+
+<script>
+/* ===== CONFIGURAÇÃO — edite aqui ===== */
+const CONFIG = {
+  infoURL:     'https://mentesemtravas.com.br/',   // botão 'quero saber mais' (página de vendas)
+  checkoutURL: 'https://pay.kiwify.com.br/UzFYrza',   // botão 1 (preço normal)
+  promoURL:    'https://pay.kiwify.com.br/Zj2Nky1',   // botão 2: combo e-book + kit (R$ 16,90)
+  priceMain:   'R$ 12,90',
+  priceOld:    'De R$ 22,80',
+  pricePromo:  'R$ 16,90',
+  showOfferAt: 0.87,          // mostra a oferta final quando o vídeo chega a 87% (fala da oferta)
+  seller:      'Vendedor: Lidiane Soares'               // ajuste igual ao rodapé da página de vendas
+};
+/* ===================================== */
+
+const PROFILES = {
+  inconstante:{t:'Mente Inconstante',p:'Você tem energia para começar — o que falta é um <b>sistema que sustente</b> o hábito depois da empolgação. O problema não é força de vontade: é método.',c:['Cap. 4 · Neurociência dos hábitos','Cap. 5 · Hábitos que duram','Cap. 8 · Recaídas sem culpa']},
+  adia:{t:'Mente que Adia',p:'Você sabe o que precisa fazer, mas <b>o cérebro empurra para depois</b> o que gera desconforto — e a culpa vem em seguida. Isso tem explicação e tem saída.',c:['Cap. 2 · A mente que adia','Regra dos 2 minutos','Ficha de diagnóstico']},
+  sobrecarregada:{t:'Mente Sobrecarregada',p:'Você está sempre ocupado, mas <b>a energia vai para o urgente</b> e o importante fica para trás. O que falta é clareza de prioridade e foco.',c:['Cap. 1 · O caos interior','Cap. 6 · Foco e tempo','Cap. 7 · Rotinas com intenção']},
+  ansiosa:{t:'Mente Ansiosa',p:'A ansiedade chega <b>antes mesmo de você começar</b> e transforma tarefas simples em montanhas. Dá para usar ferramentas práticas para baixar esse volume.',c:['Cap. 3 · Ansiedade aliada','Respiração 4-7-8','Grounding 5-4-3-2-1']}
+};
+const TIME_TXT={semanas:'Como começou há pouco tempo, é o melhor momento para agir.',meses:'Depois de alguns meses, isso já virou rotina — e rotina se muda com método.',ano:'Mais de um ano repetindo o mesmo ciclo mostra que não é falta de vontade: é falta de sistema.',sempre:'Quando é assim há muito tempo, o caminho é dar um passo pequeno de cada vez.'};
+
+const answers={};let cur='s-1';const order=['s-1','s-2','s-3','s-4'];const hist=[];
+const $=s=>document.querySelector(s);
+function show(id,fwd){const o=document.getElementById(cur),n=document.getElementById(id);
+  const go=()=>{o.classList.remove('on','out','fwd');n.classList.toggle('fwd',!!fwd);n.classList.add('on');cur=id;window.scrollTo({top:0,behavior:'smooth'});
+  const idx={'s-1':1,'s-2':2,'s-3':3,'s-4':4,'s-ana':5,'s-res':5}[id]||0;
+  document.querySelectorAll('#'+id+' .prog i').forEach((b,i)=>setTimeout(()=>b.classList.toggle('done',i<idx),60));};
+  if(fwd&&o){o.classList.add('out');setTimeout(go,300)}else go();}
+function track(n,d){try{fbq('trackCustom',n,d||{})}catch(e){}}
+
+document.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>{if(hist.length)show(hist.pop())});
+document.querySelectorAll('.opts').forEach(g=>g.addEventListener('click',e=>{
+  const o=e.target.closest('.opt');if(!o)return;const q=g.dataset.q;
+  g.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));o.classList.add('sel');answers['q'+q]=o.dataset.v;
+  if(q==='1'&&!answers.started){answers.started=1;track('QuizStart')}
+  track('QuizAnswer',{question:q,answer:o.dataset.v});
+  setTimeout(()=>{hist.push(cur);if(q<4)show('s-'+(+q+1),true);else analyse();},380);
+}));
+
+
+setTimeout(()=>document.querySelector('#s-1 .prog i').classList.add('done'),400);
+// calendário animado da pergunta 3
+(function(){const c=$('#cal');for(let i=0;i<28;i++){const d=document.createElement('i');if(i%3!==0){d.className='x';d.style.animationDelay=(i*0.18)+'s'}c.appendChild(d)}})();
+
+function analyse(){show('s-ana',true);const li=document.querySelectorAll('#s-ana .steps li');
+  li.forEach((l,i)=>setTimeout(()=>l.classList.add('ok'),700+i*800));
+  setTimeout(result,3300);}
+function result(){
+  const p=PROFILES[answers.q1]||PROFILES.adia;
+  $('#r-title').textContent=p.t;
+  $('#r-text').innerHTML=p.p+' '+(TIME_TXT[answers.q3]||'');
+  $('#r-chips').innerHTML=p.c.map(x=>'<span>'+x+'</span>').join('');
+  show('s-res',true);
+  track('QuizComplete',{profile:answers.q1});
+  try{fbq('track','ViewContent',{content_name:'Do Caos ao Controle',value:12.90,currency:'BRL'})}catch(e){}
+}
+
+// links e preços
+$('#cta-main').href=CONFIG.checkoutURL;$('#cta-promo').href=CONFIG.promoURL;
+$('#p-main').textContent=CONFIG.priceMain;$('#p-old').textContent=CONFIG.priceOld;$('#p-promo').textContent=CONFIG.pricePromo;
+$('#f-seller').textContent=CONFIG.seller;
+$('#cta-more').href=CONFIG.infoURL;$('#cta-more').onclick=()=>track('ClickSaibaMais');
+$('#cta-main').onclick=()=>track('ClickCheckout',{button:'principal'});
+$('#cta-promo').onclick=()=>track('ClickCheckout',{button:'promo'});
+
+// vídeo: botão 1 visível desde o início; oferta aparece perto do fim
+const v=$('#vsl'),play=$('#vplay'),bar=$('#vbar'),offer=$('#offer');let shown=false,sent=false;
+play.onclick=()=>{v.play();play.style.display='none';if(!sent){track('VideoPlay');sent=true}};
+v.onclick=()=>{if(v.paused){v.play();play.style.display='none'}else{v.pause();play.style.display='flex'}};
+v.ontimeupdate=()=>{if(!v.duration)return;const r=v.currentTime/v.duration;bar.style.width=(r*100)+'%';
+  if(!shown&&r>=CONFIG.showOfferAt){shown=true;offer.classList.add('on');track('VideoOffer');setTimeout(()=>offer.scrollIntoView({behavior:'smooth',block:'center'}),300)}};
+v.onended=()=>{if(!shown){shown=true;offer.classList.add('on')}play.style.display='flex'};
+v.onerror=()=>{offer.classList.add('on')}; // sem vídeo, mostra a oferta direto
+</script>
+</body>
+</html>
