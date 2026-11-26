@@ -6,7 +6,6 @@
 <title>Descubra seu perfil — Mente Sem Travas</title>
 <meta name="description" content="Responda 4 perguntas rápidas e descubra o que está travando sua rotina.">
 <meta name="theme-color" content="#050a1c">
-<link rel="icon" href="/img/pg1.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -165,6 +164,8 @@ body{background:var(--ink);color:var(--text);font-family:var(--f-body);-webkit-f
 .offer .new{font-family:var(--f-display);font-size:46px;color:var(--glow);display:block;text-align:center;margin:2px 0 16px;text-shadow:0 0 24px rgba(70,200,255,.45)}
 .cta.alt{background:linear-gradient(180deg,#ffe27a,#ffc83d);box-shadow:0 0 0 1px rgba(255,255,255,.3) inset,0 14px 40px rgba(255,200,61,.35)}
 
+footer{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:30px 22px 40px;color:#6f80aa;font-size:12.5px;line-height:1.6;text-align:center;border-top:1px solid var(--line)}
+footer a{color:#8fa2cf}
 </style>
 </head>
 <body>
@@ -255,22 +256,12 @@ body{background:var(--ink);color:var(--text);font-family:var(--f-body);-webkit-f
     <p class="res-p" id="r-text"></p>
     <div class="chips" id="r-chips"></div>
 
-    <p class="vid-h">Assista agora: <b>como sair do caos para o controle</b>, começando hoje.</p>
-    <div class="video" id="vbox">
-      <video id="vsl" src="/quiz/video.mp4?v=2" poster="/img/video-capa.jpg?v=2" playsinline preload="metadata"></video>
-      <button class="play" id="vplay" aria-label="Assistir ao vídeo"><i></i></button>
-      <div class="vbar" id="vbar"></div>
-    </div>
-
-    <!-- Botão 1: aparece desde o início do vídeo -->
-    <a class="cta" id="cta-main" href="#" target="_blank" rel="noopener">Quero o e-book agora →</a>
-    <p class="price-line">Acesso imediato por <b id="p-main"></b> · Pagamento seguro pela Kiwify</p>
-
-    <!-- Botão 2: aparece ao final do vídeo -->
-    <div class="offer" id="offer">
-      <div class="k">Condição especial para quem assistiu até o fim</div>
+    <!-- OFERTA: visível logo após o diagnóstico -->
+    <p class="vid-h" id="r-bridge">O plano para o seu tipo está pronto no e-book <b>Do Caos ao Controle</b>.</p>
+    <div class="offer on" id="offer">
+      <div class="k">Condição especial desta página</div>
       <h3>E-book + Kit de Fichas Editáveis</h3>
-      <p>Leve o método completo e as fichas prontas para aplicar o plano de 30 dias.</p>
+      <p>O método completo e as fichas prontas para aplicar o plano de 30 dias — 10 minutos por dia.</p>
       <ul>
         <li>E-book <b>Do Caos ao Controle</b> — 10 capítulos</li>
         <li>Plano de 30 dias e rastreadores</li>
@@ -278,12 +269,33 @@ body{background:var(--ink);color:var(--text);font-family:var(--f-body);-webkit-f
       </ul>
       <div style="text-align:center"><span class="old" id="p-old"></span></div>
       <span class="new" id="p-promo"></span>
-      <a class="cta alt" id="cta-promo" href="#" target="_blank" rel="noopener">Quero a oferta especial →</a>
+      <a class="cta alt" id="cta-promo" href="#" target="_blank" rel="noopener">Quero o meu plano →</a>
+      <p class="price-line" style="margin-top:10px">Acesso imediato · Pagamento seguro pela Kiwify</p>
     </div>
-      <a class="more" id="cta-more" href="#" target="_blank" rel="noopener">Quero saber mais antes de comprar →</a>
+
+    <!-- Opção só e-book -->
+    <a class="cta" id="cta-main" href="#" target="_blank" rel="noopener" style="margin-top:14px">Quero só o e-book →</a>
+    <p class="price-line">Somente o e-book por <b id="p-main"></b></p>
+
+    <!-- Vídeo opcional, abaixo da oferta -->
+    <p class="vid-h" style="margin-top:28px">Ainda em dúvida? Assista: <b>como sair do caos para o controle</b>, começando hoje.</p>
+    <div class="video" id="vbox">
+      <video id="vsl" src="video.mp4" poster="../img/video-capa.jpg" playsinline preload="metadata"></video>
+      <button class="play" id="vplay" aria-label="Assistir ao vídeo"><i></i></button>
+      <div class="vbar" id="vbar"></div>
+    </div>
+    <a class="cta alt" id="cta-promo2" href="#" target="_blank" rel="noopener" style="margin-top:16px">Quero o meu plano →</a>
+    <a class="more" id="cta-more" href="#" target="_blank" rel="noopener">Quero saber mais antes de comprar →</a>
   </section>
 </main>
 
+<footer>
+  <div><b>Mente Sem Travas</b></div>
+  <div id="f-seller"></div>
+  <div>Suporte: mentesemtravastiktok@gmail.com · Pagamento processado com segurança pela Kiwify.</div>
+  <div>Este material tem caráter educativo e de desenvolvimento pessoal e não substitui o acompanhamento de profissionais de saúde.</div>
+  <div><a href="../termos.html">Termos de uso</a> · <a href="../privacidade.html">Política de privacidade</a> · © 2026 Mente Sem Travas</div>
+</footer>
 
 <script>
 /* ===== CONFIGURAÇÃO — edite aqui ===== */
@@ -294,7 +306,8 @@ const CONFIG = {
   priceMain:   'R$ 12,90',
   priceOld:    'De R$ 22,80',
   pricePromo:  'R$ 16,90',
-  showOfferAt: 0.87,          // mostra a oferta final quando o vídeo chega a 87% (fala da oferta)
+  videoOfferAt: 0.87,         // só para medir quantos assistem até a fala da oferta (evento VideoOffer)
+  seller:      'Vendedor: Lidiane Soares'               // ajuste igual ao rodapé da página de vendas
 };
 /* ===================================== */
 
@@ -338,26 +351,30 @@ function result(){
   $('#r-title').textContent=p.t;
   $('#r-text').innerHTML=p.p+' '+(TIME_TXT[answers.q3]||'');
   $('#r-chips').innerHTML=p.c.map(x=>'<span>'+x+'</span>').join('');
+  const nm=p.t.replace(/^O /,'o ');
+  $('#r-bridge').innerHTML='O plano para <b>'+nm+'</b> está pronto no e-book <b>Do Caos ao Controle</b>.';
+  $('#cta-promo').textContent='Quero o plano para '+nm+' →';
   show('s-res',true);
   track('QuizComplete',{profile:answers.q1});
   try{fbq('track','ViewContent',{content_name:'Do Caos ao Controle',value:12.90,currency:'BRL'})}catch(e){}
 }
 
 // links e preços
-$('#cta-main').href=CONFIG.checkoutURL;$('#cta-promo').href=CONFIG.promoURL;
+$('#cta-main').href=CONFIG.checkoutURL;$('#cta-promo').href=CONFIG.promoURL;$('#cta-promo2').href=CONFIG.promoURL;$('#cta-promo2').textContent='Quero o meu plano por '+CONFIG.pricePromo+' →';
 $('#p-main').textContent=CONFIG.priceMain;$('#p-old').textContent=CONFIG.priceOld;$('#p-promo').textContent=CONFIG.pricePromo;
+$('#f-seller').textContent=CONFIG.seller;
 $('#cta-more').href=CONFIG.infoURL;$('#cta-more').onclick=()=>track('ClickSaibaMais');
 $('#cta-main').onclick=()=>track('ClickCheckout',{button:'principal'});
 $('#cta-promo').onclick=()=>track('ClickCheckout',{button:'promo'});
+$('#cta-promo2').onclick=()=>track('ClickCheckout',{button:'promo_video'});
 
-// vídeo: botão 1 visível desde o início; oferta aparece perto do fim
-const v=$('#vsl'),play=$('#vplay'),bar=$('#vbar'),offer=$('#offer');let shown=false,sent=false;
+// vídeo opcional: a oferta já aparece desde o início; aqui só medimos
+const v=$('#vsl'),play=$('#vplay'),bar=$('#vbar');let sent=false,vo=false;
 play.onclick=()=>{v.play();play.style.display='none';if(!sent){track('VideoPlay');sent=true}};
 v.onclick=()=>{if(v.paused){v.play();play.style.display='none'}else{v.pause();play.style.display='flex'}};
 v.ontimeupdate=()=>{if(!v.duration)return;const r=v.currentTime/v.duration;bar.style.width=(r*100)+'%';
-  if(!shown&&r>=CONFIG.showOfferAt){shown=true;offer.classList.add('on');track('VideoOffer');setTimeout(()=>offer.scrollIntoView({behavior:'smooth',block:'center'}),300)}};
-v.onended=()=>{if(!shown){shown=true;offer.classList.add('on')}play.style.display='flex'};
-v.onerror=()=>{offer.classList.add('on')}; // sem vídeo, mostra a oferta direto
+  if(!vo&&r>=CONFIG.videoOfferAt){vo=true;track('VideoOffer')}};
+v.onended=()=>{play.style.display='flex'};
 </script>
 </body>
 </html>
